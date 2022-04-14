@@ -1,0 +1,61 @@
+/* -------------------------------------------------------------------------- */
+/*                              CUSTOM PROPERTIES                             */
+/* -------------------------------------------------------------------------- */
+:root {
+
+    /* Colors */
+    --primary-color: 256 34% 17%;
+    --primary-color-shade: 256 33% 15%;
+    --primary-color-tint: 256 21% 26%;
+    --secondary-color: 342 92% 44%;
+    --accent-color: 173 52% 44%;
+    --text-color: 245 9% 75%;
+
+    /* Font Familiy */
+    --heading-font: 'DM Sans', sans-serif;
+    --text-font: 'Raleway', sans-serif;
+
+    /* Font Weights */
+    --fw-thin: 100;
+    --fw-light: 300;
+    --fw-regular: 400;
+    --fw-bold: 700;
+
+    /* Border */
+    --br: 1.25rem;
+
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   GLOBAL                                   */
+/* -------------------------------------------------------------------------- */
+
+body {
+    color: hsl(var(--text-color));
+    font-family: var(--text-font);
+    font-weight: var(--fw-light);
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--heading-font);
+}
+
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+main,
+section {
+    position: relative;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                                 COMPONENTS                                 */
+/* -------------------------------------------------------------------------- */
+
