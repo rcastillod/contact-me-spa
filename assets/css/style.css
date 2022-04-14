@@ -21,6 +21,7 @@
     --fw-thin: 100;
     --fw-light: 300;
     --fw-regular: 400;
+    --fw-semibold: 600;
     --fw-bold: 700;
 
     /* Border */
@@ -51,6 +52,7 @@ h2,
 h3,
 h4 {
     font-family: var(--heading-font);
+    margin: 0;
 }
 
 p {
@@ -251,5 +253,25 @@ section {
 /* Chat Messages  */
 .chat-messages {
     background-color: hsl(var(--primary-color-shade) / .7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex: 1;
+}
+
+.intro-messages {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+.intro-messages__image {
+    width: 18.75rem;
+}
+.intro-messages__text {
+    max-width: 50ch;
+    text-align: center;
+}
+.intro-messages__text span {
+    font-weight: var(--fw-semibold);
 }
