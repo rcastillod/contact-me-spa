@@ -6,10 +6,12 @@
     /* Colors */
     --primary-color: 256 34% 17%;
     --primary-color-shade: 256 33% 15%;
-    --primary-color-tint: 256 21% 26%;
+    --primary-color-tint: 257 21% 45%;
     --secondary-color: 342 92% 44%;
+    --secondary-color-shade: 337 85% 35%;
     --accent-color: 173 52% 44%;
     --text-color: 245 9% 75%;
+    --white-color: 0 0 100%;
 
     /* Font Familiy */
     --heading-font: 'DM Sans', sans-serif;
@@ -23,6 +25,7 @@
 
     /* Border */
     --br: 1.25rem;
+    --br-full: 50%;
 
 }
 
@@ -30,10 +33,17 @@
 /*                                   GLOBAL                                   */
 /* -------------------------------------------------------------------------- */
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     color: hsl(var(--text-color));
     font-family: var(--text-font);
     font-weight: var(--fw-light);
+    margin: 0;
 }
 
 h1,
@@ -41,6 +51,10 @@ h2,
 h3,
 h4 {
     font-family: var(--heading-font);
+}
+
+p {
+    margin: 0;
 }
 
 img,
@@ -59,3 +73,183 @@ section {
 /*                                 COMPONENTS                                 */
 /* -------------------------------------------------------------------------- */
 
+/* Main Wrapper */
+.main-wrapper {
+    background-image: url('../img/main-bg.jpg');
+    background-size: cover;
+    background-position: center center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 2.5rem;
+    position: relative;
+}
+.main-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: hsl(var(--primary-color) / .7);
+}
+
+/* Chat Wrapper */
+.chat-wrapper {
+    background-color: hsl(var(--primary-color) / .1);
+    backdrop-filter: blur(1.25rem);
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+/* Chat Contacts  */
+.chat-contacts {
+    background-color: hsl(var(--primary-color) / .5 );
+    width: 28.125rem;
+}
+
+/* Profile */
+.profile {
+    background-color: hsl(var(--primary-color-shade) / .9);
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 1.25rem;
+}
+
+.profile__info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+}
+.profile__info.active::before {
+    content: '';
+    position: absolute;
+    top: -0.0125rem;
+    left: .1875rem;
+    height: .625rem;
+    width: .625rem;
+    border-radius: var(--br-full);
+    background-color: hsl(var(--accent-color));
+}
+
+.profile__image {
+    border-radius: var(--br-full);
+    height: 3.125rem;
+    width: 3.125rem;
+    overflow: hidden;
+}
+.profile__image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.profile__name p {
+    font-family: var(--heading-font);
+    font-size: 1.125rem;
+    font-weight: var(--fw-bold);
+}
+.profile__name span {
+    font-size: .875rem;
+}
+
+.profile__icons {
+    display: flex;
+    gap: .9375rem;
+}
+.profile__icons a {
+    color: hsl(var(--primary-color-tint));
+    font-size: 1.125rem;
+    transition: color 250ms ease-in-out;
+}
+.profile__icons a:hover,
+.profile__icons a:focus {
+    color: hsl(var(--secondary-color));
+}
+
+.profile__new,
+.profile__last {
+    font-family: var(--heading-font);
+    font-size: .75rem;
+    background-color: hsl(var(--primary-color-tint));
+    border-radius: var(--br);
+    color: hsl(var(--white-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.125rem;
+    width: 2.1875rem;
+}
+.profile__new {
+    background-color: hsl(var(--secondary-color));
+    font-weight: var(--fw-bold);
+}
+
+/* New Chat */
+.new-chat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7.5rem;
+    background-color: hsl(var(--primary-color-tint)/.1);
+}
+.new-chat__button {
+    background-color: hsl(var(--secondary-color));
+    border: 0;
+    color: hsl(var(--white-color));
+    cursor: pointer;
+    font-family: var(--heading-font);
+    font-size: 1.125rem;
+    padding: .5em 1.25em;
+    transition: background 250ms ease-in-out;
+}
+.new-chat__button:hover,
+.new-chat__button:focus {
+    background-color: hsl(var(--primary-color-shade));
+}
+
+/* Chat Contacts */
+.chat-contacts__list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.chat-contacts__list li:not(:last-child) {
+    border-bottom: 1px solid hsl(var(--primary-color-tint) / .1 );
+}
+.chat-contacts__list .profile {
+    background-color: hsl(var(--primary-color) / .1);
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+.chat-contacts__list .profile::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right, hsl(var(--secondary-color)), hsl(var(--secondary-color-shade)));
+    mix-blend-mode: multiply;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 250ms ease-in-out;
+}
+.chat-contacts__list .profile:hover .profile__icons,
+.chat-contacts__list .profile:focus .profile__icons {
+    opacity: 0;
+}
+.chat-contacts__list .profile:hover::before,
+.chat-contacts__list .profile:focus::before {
+    opacity: 1;
+}
+
+/* Chat Messages  */
+.chat-messages {
+    background-color: hsl(var(--primary-color-shade) / .7);
+    flex: 1;
+}
